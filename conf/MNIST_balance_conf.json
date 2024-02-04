@@ -3,49 +3,49 @@
         {
             "model_type": "2_layer_CNN",
             "params": {
-                "n1": 128,
-                "n2": 256,
+                "n1": 16,
+                "n2": 32,
                 "dropout_rate": 0.2
             }
         },
         {
             "model_type": "2_layer_CNN",
             "params": {
-                "n1": 128,
-                "n2": 384,
+                "n1": 32,
+                "n2": 64,
                 "dropout_rate": 0.2
             }
         },
         {
             "model_type": "2_layer_CNN",
             "params": {
-                "n1": 128,
-                "n2": 512,
+                "n1": 28,
+                "n2": 52,
                 "dropout_rate": 0.2
             }
         },
         {
             "model_type": "2_layer_CNN",
             "params": {
-                "n1": 256,
-                "n2": 256,
+                "n1": 56,
+                "n2": 156,
                 "dropout_rate": 0.3
             }
         },
         {
             "model_type": "2_layer_CNN",
             "params": {
-                "n1": 256,
-                "n2": 512,
+                "n1": 56,
+                "n2": 52,
                 "dropout_rate": 0.4
             }
         },
         {
             "model_type": "3_layer_CNN",
             "params": {
-                "n1": 64,
-                "n2": 128,
-                "n3": 256,
+                "n1": 13,
+                "n2": 18,
+                "n3": 56,
                 "dropout_rate": 0.2
             }
         },
@@ -53,24 +53,24 @@
             "model_type": "3_layer_CNN",
             "params": {
                 "n1": 64,
-                "n2": 128,
-                "n3": 192,
+                "n2": 28,
+                "n3": 92,
                 "dropout_rate": 0.2
             }
         },
         {
             "model_type": "3_layer_CNN",
             "params": {
-                "n1": 128,
-                "n2": 192,
-                "n3": 256,
+                "n1": 28,
+                "n2": 92,
+                "n3": 156,
                 "dropout_rate": 0.2
             }
         },
         {
             "model_type": "3_layer_CNN",
             "params": {
-                "n1": 128,
+                "n1": 28,
                 "n2": 128,
                 "n3": 128,
                 "dropout_rate": 0.3
@@ -79,7 +79,7 @@
         {
             "model_type": "3_layer_CNN",
             "params": {
-                "n1": 128,
+                "n1": 28,
                 "n2": 128,
                 "n3": 192,
                 "dropout_rate": 0.3
@@ -109,9 +109,9 @@
     ],
     "early_stopping": true,
     "learning_rate": 0.0001,
-    "N_parties": 10,
-    "N_samples_per_class": 5,
-    "N_alignment": 100,
+    "N_parties": 30,
+    "N_samples_per_class": 10,
+    "N_alignment": 1000,
     "private_classes": [
         10,
         11,
@@ -134,10 +134,10 @@
     ],
     "is_show": false,
     "N_rounds": 50,
-    "N_logits_matching_round": 1,
+    "N_logits_matching_round": 2,
     "N_private_training_round": 2,
-    "private_training_batchsize": 64,
-    "logits_matching_batchsize": 64,
+    "private_training_batchsize": 32,
+    "logits_matching_batchsize": 32,
     "dataset_dir": "./fl_data/my_data",
     "result_save_dir": "../results/",
     "aug": false,

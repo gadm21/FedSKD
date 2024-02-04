@@ -57,8 +57,8 @@ class FedMD():
             model_A_twin = None
             model_A_twin = clone_model(parties[i])
             model_A_twin.set_weights(parties[i].get_weights())
-            model_A_twin.compile(optimizer=tf.keras.optimizers.Adam(lr = 1e-5), 
-                                 loss = "sparse_categorical_crossentropy",
+            model_A_twin.compile(optimizer=tf.keras.optimizers.Adam(lr = 1e-4), 
+                                 loss = "categorical_crossentropy",
                                  metrics = ["accuracy"])
             
             model_A = remove_last_layer(model_A_twin, loss="mean_absolute_error")
@@ -313,8 +313,9 @@ class FedMD():
 
             for index, d in enumerate(self.collaborative_parties):
                 predictions, labels = [], [] 
-                for data, label in self.private_test_data : 
+                for i, data in enumerate(self.private_test_data):
                     y_pred = d["model_classifier"].predict(data, verbose = 0).argmax(axis = 1)
+                    label = np.repeat(i, len(y_pred))
                     predictions.append(y_pred) 
                     labels.append(label)
                 predictions = np.concatenate(predictions, axis = 0)
@@ -377,8 +378,8 @@ class FedAvg():
             self.logger.info("model {0}".format(i))
             model_clone = tf.keras.models.clone_model(parties[i])
             model_clone.set_weights(parties[i].get_weights())
-            model_clone.compile(optimizer=tf.keras.optimizers.Adam(lr=1e-5),
-                                loss="sparse_categorical_crossentropy",
+            model_clone.compile(optimizer=tf.keras.optimizers.Adam(lr=1e-4),
+                                loss="categorical_crossentropy",
                                 metrics=["accuracy"])
             
             self.collaborative_parties.append(model_clone) 
@@ -420,7 +421,7 @@ class FedAvg():
             t1 = time.time()
             # set all parties to the average weights
             for i, d in enumerate(self.collaborative_parties):
-                d.fit(self.private_data[i],
+                d.fit(self.private_data[i][0], self.private_data[i][1],
                                batch_size=self.private_training_batchsize,
                                epochs= self.N_private_training_round,
                                shuffle=True, verbose=0)
@@ -441,8 +442,9 @@ class FedAvg():
 
             for index, d in enumerate(self.collaborative_parties):
                 predictions, labels = [], []
-                for data, label in self.private_test_data : 
+                for i, data in enumerate(self.private_test_data):
                     y_pred = d.predict(data, verbose = 0).argmax(axis = 1)
+                    label = np.repeat(i, len(y_pred))
                     predictions.append(y_pred) 
                     labels.append(label)
                 predictions = np.concatenate(predictions, axis = 0)

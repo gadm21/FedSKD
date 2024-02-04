@@ -5,7 +5,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 import tensorflow as tf
 
 
-def cnn_3layer_fc_model(n_classes,n1 = 128, n2=192, n3=256, dropout_rate = 0.2,input_shape = (28,28)):
+def cnn_3layer_fc_model(n_classes,n1 = 16, n2=32, n3=64, dropout_rate = 0.2,input_shape = (28,28)):
     model_A, x = None, None
      
     x = Input(input_shape)
@@ -20,7 +20,7 @@ def cnn_3layer_fc_model(n_classes,n1 = 128, n2=192, n3=256, dropout_rate = 0.2,i
     y = Dropout(dropout_rate)(y)
     y = AveragePooling2D(pool_size = (2,2), strides = 1, padding = "same")(y)
 
-    y = Conv2D(filters = n2, kernel_size = (2,2), strides = 2, padding = "valid", 
+    y = Conv2D(filters = n2, kernel_size = (3,3), strides = 2, padding = "valid", 
             activation = None)(y)
     y = BatchNormalization()(y)
     y = Activation("relu")(y)
@@ -43,11 +43,11 @@ def cnn_3layer_fc_model(n_classes,n1 = 128, n2=192, n3=256, dropout_rate = 0.2,i
     model_A = Model(inputs = x, outputs = y)
 
     model_A.compile(optimizer=tf.keras.optimizers.Adam(lr = 1e-5), 
-                        loss = "sparse_categorical_crossentropy",
+                        loss = "categorical_crossentropy",
                         metrics = ["accuracy"])
     return model_A
   
-def cnn_2layer_fc_model(n_classes,n1 = 128, n2=256, dropout_rate = 0.2,input_shape = (28,28)):
+def cnn_2layer_fc_model(n_classes,n1 = 32, n2=64, dropout_rate = 0.2,input_shape = (28,28)):
     model_A, x = None, None
     
     x = Input(input_shape)
@@ -79,7 +79,7 @@ def cnn_2layer_fc_model(n_classes,n1 = 128, n2=256, dropout_rate = 0.2,input_sha
     model_A = Model(inputs = x, outputs = y)
 
     model_A.compile(optimizer=tf.keras.optimizers.Adam(lr = 1e-5), 
-                        loss = "sparse_categorical_crossentropy",
+                        loss = "categorical_crossentropy",
                         metrics = ["accuracy"])
     return model_A
 
