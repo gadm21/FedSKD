@@ -2,8 +2,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import Model
+import json 
 
-
+def read_config(conf_file):
+    with open(conf_file, "r") as f:
+            conf_dict = json.load(f)
+    return conf_dict
 
 def count_parameters(keras_model: Model) -> int:
     return keras_model.count_params()
