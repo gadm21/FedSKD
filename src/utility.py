@@ -9,8 +9,8 @@ def read_config(conf_file):
             conf_dict = json.load(f)
     return conf_dict
 
-def count_parameters(keras_model: Model) -> int:
-    return keras_model.count_params()
+# def count_parameters(keras_model: Model) -> int:
+#     return keras_model.count_params()
 
 
 # a function that calculates keras model size in KB

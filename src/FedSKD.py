@@ -1,3 +1,4 @@
+
 import numpy as np
 from tensorflow.keras.models import clone_model, load_model
 from tensorflow.keras.callbacks import EarlyStopping
@@ -11,7 +12,8 @@ from utility import *
 
 import logging
 
-class FedMD():
+class FedSKD():
+    
     def __init__(self, parties, original_public_dataset, 
                  private_data,  
                  private_test_data,
@@ -48,8 +50,6 @@ class FedMD():
         self.logger.setLevel(logging.INFO)
 
         self.rounds_time = []
-
-        
         
         # print("start model initialization: ")
         for i in range(self.N_parties):
@@ -67,7 +67,8 @@ class FedMD():
             self.collaborative_parties.append({"model_logits": model_A, 
                                                "model_classifier": model_A_twin,
                                                "model_weights": model_A_twin.get_weights()})
-            
+
+
     def collaborative_training(self):  
         client_time = 0 
 

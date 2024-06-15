@@ -35,21 +35,7 @@ def load_ready_data(data_dir, dataset_name) :
         test_data.append(test_x) 
     
     return clients_data, alignment_data, test_data
-        
 
-
-if __name__ == "__main__" :
-
-    dataset = 'CIFAR10' 
-    data_dir = os.path.join(os.getcwd(), "fl_data", "my_data")
-    clients_data, alignment_data, test_data = load_ready_date(data_dir, dataset)
-
-    print("number of clients:", len(clients_data)) 
-    print("data shape:", clients_data[0][0].shape, clients_data[0][1].shape)
-    print("number of alignment data:", len(alignment_data))
-    print("alignment data shape:", alignment_data[0].shape)
-    print("number of test data:", len(test_data))
-    print("test data shape:", test_data[0].shape)
 
 
 
@@ -416,3 +402,18 @@ def generate_imbal_CIFAR_private_data(X, y, y_super, classes_per_party, N_partie
     #total_priv_data["y_super"] = y_super[combined_idxs]
     total_priv_data["y"] = y_super[combined_idxs]
     return priv_data, total_priv_data
+
+
+
+if __name__ == "__main__" :
+
+    dataset = 'CIFAR10'
+    data_dir = os.path.join(os.getcwd(), "my_data")
+    clients_data, alignment_data, test_data = load_ready_date(data_dir, dataset)
+
+    print("number of clients:", len(clients_data)) 
+    print("data shape:", clients_data[0][0].shape, clients_data[0][1].shape)
+    print("number of alignment data:", len(alignment_data))
+    print("alignment data shape:", alignment_data[0].shape)
+    print("number of test data:", len(test_data))
+    print("test data shape:", test_data[0].shape)

@@ -87,10 +87,10 @@
         }
     ],
     "pre_train_params": {
-        "min_delta": 0.001,
+        "min_delta": 0.01,
         "patience": 3,
-        "batch_size": 128,
-        "epochs": 20,
+        "batch_size": 164,
+        "epochs": 10,
         "is_shuffle": true,
         "verbose": 1
     },
@@ -108,9 +108,9 @@
         "CNN_128_128_192"
     ],
     "early_stopping": true,
-    "learning_rate": 0.0001,
-    "N_parties": 30,
-    "N_samples_per_class": 10,
+    "learning_rate": 0.001,
+    "N_parties": 3,
+    "N_samples_per_class": 20,
     "N_alignment": 1000,
     "private_classes": [
         10,
@@ -133,9 +133,9 @@
         9
     ],
     "is_show": false,
-    "N_rounds": 50,
-    "N_logits_matching_round": 2,
-    "N_private_training_round": 2,
+    "N_rounds": 30,
+    "N_logits_matching_round": 3,
+    "N_private_training_round": 3,
     "private_training_batchsize": 32,
     "logits_matching_batchsize": 32,
     "dataset_dir": "./fl_data/my_data",
@@ -143,5 +143,5 @@
     "aug": false,
     "compress": false,
     "select": false,
-    "algorithm": "fedavg"
+    "algorithm": "fedskd"
 }
